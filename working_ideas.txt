@@ -1,6 +1,15 @@
+
+type_id ="heart attack"
 my_outcome<-read.csv("outcome-of-care-measures.csv",colClasses = "character")
-reduce_data <- my_outcome[c(1,2,7,11,17,23)]
-colnames(reduce_data)
-colnames(reduce_data)<-c("ID","Hospital","State","Attack","Failure","Pneumonia")temp> attack_scoresaattack_score<-sort(unique(as.numeric(reduce_data[,4])))
-attack_freq <-rbind(attack_scores,0)
-for( i in 1:length(attacK_scores){ attack_freq[i,2]<-sum(reduce_data[ ,4]==attack_scores[i])   }
+reduced_data <- my_outcome[c(1,2,7,11,17,23)]
+colnames(reduced_data)
+colnames(reduced_data)<-c("ID","Hospital","State","heart attack","heart failure","pneumonia")
+
+prob_id<-rbind(type_prob=colnames(reduced_data),org_col=c(1,2,3,4,5,6))
+colnames(prob_id)<-colnames(reduced_data)
+type_col<-as.numeric(prob_id[2,type_id])
+ 
+type_scores<-sort(unique(as.numeric(reduced_data[,type_col])))
+type_freq <-rbind(type_scores,0)
+for( i in 1:length(type_scores)){ type_freq[2,i]<-sum(reduced_data[ ,type_col]==type_scores[i])}
+
