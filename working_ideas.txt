@@ -1,0 +1,6 @@
+my_outcome<-read.csv("outcome-of-care-measures.csv",colClasses = "character")
+reduce_data <- my_outcome[c(1,2,7,11,17,23)]
+colnames(reduce_data)
+colnames(reduce_data)<-c("ID","Hospital","State","Attack","Failure","Pneumonia")temp> attack_scoresaattack_score<-sort(unique(as.numeric(reduce_data[,4])))
+attack_freq <-rbind(attack_scores,0)
+for( i in attacK_scores){ attack_freq[i,2]<-sum(reduce_data[ ,4]==attack_scores[i])   }
