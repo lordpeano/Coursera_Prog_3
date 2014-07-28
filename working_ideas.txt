@@ -1,18 +1,25 @@
 
-type_id ="heart attack"
+type_id_in ="heart attack"
 num_scores = 10
+state = "TX"
 my_outcome<-read.csv("outcome-of-care-measures.csv",colClasses = "character")
 
 reduced_data <- my_outcome[c(1,2,7,11,17,23)]
 colnames(reduced_data)
 colnames(reduced_data)<-c("ID","Hospital","State","Attack","Failure","Pneumonia")
+Attack = 4
+Failure = 5
+Pneumonia = 6
 
-prob_id<-rbind(type_prob=colnames(reduced_data),org_col=c(1,2,3,4,5,6))
-colnames(prob_id)<-colnames(reduced_data)
-type_col<-as.numeric(prob_id[2,type_id])
- 
-type_scores<-sort(unique((reduced_data[,type_col])))
-type_freq <-rbind(type_scores,freq=0)
+if (type_id_in == "heart attack"){type_id =Attack}
+if (type_id_in == "heart failure"){type_id = Failure}
+if (type_id_in == "pneumonia"){ type_id = Pneumonia}
+
+type_col<-as.numeric(type_id)
+type_data_temp <- reduced_data[ ,c(1,2,3,type_col)]
+type_data<-temp <-subset(reduced_data,reduced_data$State==state)
+type_scores <- sort(type_data[,type_id],na.last=NA,index.return=T)
+type_sort<- sort(unique((type_data[type_id])))
 
 # max number of entries would be the number of requested
 # but a single values could have more that one hospital.
